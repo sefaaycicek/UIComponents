@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.sirketismi.uicomponents.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+
+        <action
+            android:id="@+id/action_menu_to_products"
+            app:destination="@id/productsFragment">
+
+        </action>
+
+        <action
+            android:id="@+id/action_menu_to_product_detail"
+            app:destination="@id/productDetail">
+
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.sirketismi.uicomponents.ProductsFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.sirketismi.uicomponents.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.sirketismi.uicomponents.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/productDetail"
+        android:name="com.sirketismi.uicomponents.ProductDetail"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" />
+
+
+</navigation>

@@ -44,7 +44,17 @@
         android:id="@+id/productDetail"
         android:name="com.sirketismi.uicomponents.ProductDetail"
         android:label="fragment_product_detail"
-        tools:layout="@layout/fragment_product_detail" />
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="nameParam"
+            app:argType="string">
+        </argument>
+
+        <argument
+            android:name="product"
+            app:argType="com.sirketismi.uicomponents.Product">
+        </argument>
+    </fragment>
 
 
 </navigation>

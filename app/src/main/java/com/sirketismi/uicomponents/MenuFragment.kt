@@ -7,8 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.sirketismi.uicomponents.databinding.FragmentMenuBinding
+import com.sirketismi.uicomponents.db.AppDatabase
+import com.sirketismi.uicomponents.model.User
+import com.sirketismi.uicomponents.repository.UserRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MenuFragment : Fragment() {
 
@@ -23,11 +32,36 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
+        viewModel.userRepository = (activity?.application as MyApplication).repository
         binding = FragmentMenuBinding.inflate(inflater)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
+        viewModel.insert(User(0, "Sefa", "Ayçiçek"))
+
+      /*  context?.let {
+
+
+            print("Hello-1")
+            runBlocking {
+                launch {
+                    repository.insert(User(0, "Sefa", "Ayçiçek"))
+                    repository.getAll().observe(this@MenuFragment.viewLifecycleOwner) { userList->
+                        print(userList)
+                    }
+                    print("Hello-3")
+                }
+
+                launch {
+
+                }
+            }
+        }*/
+
+        print("Hello-2")
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

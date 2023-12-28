@@ -18,12 +18,14 @@ abstract class AppDatabase : RoomDatabase() {
             if(database != null) {
                 return database!!
             } else {
-                database = Room.databaseBuilder(
-                    context,
-                    AppDatabase::class.java,
-                    "demodb").build()
+                synchronized(this) {
+                    database = Room.databaseBuilder(
+                        context,
+                        AppDatabase::class.java,
+                        "demodb").build()
 
-                return database!!
+                    return database!!
+                }
             }
         }
     }

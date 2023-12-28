@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -13,15 +14,25 @@ import com.sirketismi.uicomponents.databinding.FragmentMenuBinding
 import com.sirketismi.uicomponents.db.AppDatabase
 import com.sirketismi.uicomponents.model.User
 import com.sirketismi.uicomponents.repository.UserRepository
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MenuFragment : Fragment() {
 
-    lateinit var viewModel: MenuViewModel
+
+    val viewModel : MenuViewModel by viewModels()
+
+    /*val viewModel: MenuViewModel by viewModels() {
+        MenuViewModelFactory((activity?.application as MyApplication).repository)
+    }*/
+
     lateinit var binding : FragmentMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +42,6 @@ class MenuFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
-        viewModel.userRepository = (activity?.application as MyApplication).repository
         binding = FragmentMenuBinding.inflate(inflater)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

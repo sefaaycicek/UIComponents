@@ -2,8 +2,15 @@ package com.sirketismi.uicomponents
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sirketismi.uicomponents.repository.ProductRepository
+import com.sirketismi.uicomponents.repository.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ProductDetailViewModel : ViewModel() {
+
+
+@HiltViewModel
+class ProductDetailViewModel @Inject constructor (var userRepository: UserRepository) : ViewModel() {
     var productList = mutableListOf<Product>()
 
     var updateListener = MutableLiveData<Boolean>()

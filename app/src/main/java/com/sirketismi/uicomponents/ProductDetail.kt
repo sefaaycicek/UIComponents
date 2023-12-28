@@ -32,14 +32,32 @@ class ProductDetail : Fragment() {
         viewModel = ViewModelProvider(this).get(ProductDetailViewModel::class.java)
         binding = FragmentProductDetailBinding.inflate(inflater)
         binding.btn.setOnClickListener {
-            val bundle = bundleOf("prm1" to 10, "prm2" to "Sefa", "prm3" to 10.2)
+           /* val bundle = bundleOf("prm1" to 10, "prm2" to "Sefa", "prm3" to 10.2)
 
             setFragmentResult(resultKey, bundle)
-            findNavController().popBackStack()
+            findNavController().popBackStack()*/
+
+            val action = ProductDetailDirections.actionProductToCart()
+            findNavController().navigate(action)
         }
 
         binding.txtName.text = args.nameParam
         viewModel.appendProductList(args.product)
+
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.edit -> {
+                    true
+                }
+                else -> {
+                    true
+                }
+            }
+        }
 
         viewModel.updateListener.observe(this) {
             if(it) {

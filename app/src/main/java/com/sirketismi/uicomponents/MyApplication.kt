@@ -3,11 +3,10 @@ package com.sirketismi.uicomponents
 import android.app.Application
 import com.sirketismi.uicomponents.db.AppDatabase
 import com.sirketismi.uicomponents.repository.UserRepository
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MyApplication : Application() {
-    val database by lazy { AppDatabase.getDatabase(this) }
-    val repository by lazy { UserRepository(database.userDao()) }
-
     override fun onCreate() {
         super.onCreate()
     }
